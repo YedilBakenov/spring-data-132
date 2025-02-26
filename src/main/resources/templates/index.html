@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="main-layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <button type="button" class="btn btn-success btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#addcar">
+        + ADD ITEM
+    </button>
+
+    <div class="modal fade" id="addcar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">WINDOW ADD ITEM</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/items/add-item" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>MODEL NAME</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="modelName">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>COST</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="cost">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>DESCRIPTION</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="10" cols="40" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success btn-sm">ADD ITEM</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>MODEL NAME</th>
+            <th>COST</th>
+            <th>DESCRIPTION</th>
+            <th>DETAILS</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="it: ${items}">
+            <td th:text="${it.id}"></td>
+            <td th:text="${it.modelName}"></td>
+            <td th:text="${it.cost}"></td>
+            <td th:text="${it.description}"></td>
+            <td style="width: 8%"><a class="btn btn-secondary btn-sm" th:href="@{'/api/items/item-details/' + ${it.id}}">DETAILS</a>
+                <div class="mt-3">
+                    <form action="/api/items/item-cost-desc">
+                    <input type="text" name="cost" th:value="${it.cost}" >
+                    <input type="text" name="description" th:value="${it.description}" >
+                     <button class="btn btn-success btn-sm">FIND</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+</div>
+
+</body>
+</html>
