@@ -85,15 +85,7 @@
             <td th:text="${it.modelName}"></td>
             <td th:text="${it.cost}"></td>
             <td th:text="${it.description}"></td>
-            <td style="width: 8%"><a class="btn btn-secondary btn-sm" th:href="@{'/api/items/item-details/' + ${it.id}}">DETAILS</a>
-                <div class="mt-3">
-                    <form action="/api/items/item-cost-desc">
-                    <input type="text" name="cost" th:value="${it.cost}" >
-                    <input type="text" name="description" th:value="${it.description}" >
-                     <button class="btn btn-success btn-sm">FIND</button>
-                    </form>
-                </div>
-            </td>
+            <td style="width: 8%"><a class="btn btn-secondary btn-sm" th:href="@{'/api/items/item-details/' + ${it.id}}">DETAILS</a></td>
         </tr>
         </tbody>
 

@@ -6,29 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Getter
-@Setter
+@Entity
+@Table(name = "cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "items")
-public class Item {
+@Getter
+@Setter
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String modelName;
-
-    @Column(columnDefinition = "text")
-    private String description;
-
-    private int cost;
-
-    @ManyToMany
-    private List<City> cities;
-
+    private String name;
+    private String country;
+    private String code;
 }
