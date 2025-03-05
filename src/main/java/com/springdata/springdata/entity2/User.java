@@ -1,6 +1,6 @@
-package com.springdata.springdata.entity;
+package com.springdata.springdata.entity2;
 
-import groovy.transform.builder.Builder;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,18 +8,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "cities")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class City {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-    private String country;
-    private String code;
+    private String fullName;
+
+    private int age;
+
+    private String profession;
 }

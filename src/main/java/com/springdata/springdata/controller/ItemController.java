@@ -2,8 +2,10 @@ package com.springdata.springdata.controller;
 
 import com.springdata.springdata.entity.City;
 import com.springdata.springdata.entity.Item;
+import com.springdata.springdata.entity2.User;
 import com.springdata.springdata.repository.CityRepository;
 import com.springdata.springdata.repository.ItemRepository;
+import com.springdata.springdata.repository2.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +20,23 @@ public class ItemController {
 
     private final ItemRepository itemRepository;
     private final CityRepository cityRepository;
+    private final UserRepository userRepository;
 
     @GetMapping()
     public String getAllItems(Model model) {
         model.addAttribute("items", itemRepository.findAll());
         return "index";
+    }
+
+    @GetMapping(value = "/add-user")
+    public String getAddPage() {
+        return "add-user";
+    }
+
+    @PostMapping(value = "/add-user")
+    public String getAddCar(User user) {
+        userRepository.save(user);
+        return "redirect:/api/items";
     }
 
     @PostMapping(value = "/add-item")
