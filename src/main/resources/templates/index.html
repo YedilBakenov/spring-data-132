@@ -14,6 +14,13 @@
         + ADD ITEM
     </button>
 
+    <form class="mt-2" action="/api/items/search" method="get">
+        <div class="d-flex">
+        <input type="text" class="form-control w-75" name="str">
+            <button class="btn btn-info btn-sm w-25">SEARCH</button>
+        </div>
+    </form>
+
     <div class="modal fade" id="addcar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

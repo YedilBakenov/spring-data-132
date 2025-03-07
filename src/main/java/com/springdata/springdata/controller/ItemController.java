@@ -28,6 +28,13 @@ public class ItemController {
         return "index";
     }
 
+    @GetMapping(value = "/search")
+    public String getAllItemsFromStr(@RequestParam String str,
+                                     Model model) {
+        model.addAttribute("items", itemRepository.getItemsFromWord(str));
+        return "index";
+    }
+
     @GetMapping(value = "/add-user")
     public String getAddPage() {
         return "add-user";
