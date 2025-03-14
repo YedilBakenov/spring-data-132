@@ -1,6 +1,5 @@
 package com.springdata.springdata.entity;
 
-import groovy.transform.builder.Builder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
