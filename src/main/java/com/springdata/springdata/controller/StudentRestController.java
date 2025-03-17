@@ -2,6 +2,7 @@ package com.springdata.springdata.controller;
 
 
 import com.springdata.springdata.entity.Student;
+import com.springdata.springdata.repository.StudentCustomRepository;
 import com.springdata.springdata.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 public class StudentRestController {
 
     private final StudentService studentService;
+    private final StudentCustomRepository studentCustomRepository;
 
     @GetMapping()
     public List<Student> getAllStudents(){
@@ -41,7 +43,22 @@ public class StudentRestController {
        return "";
     }
 
+    @GetMapping(value = "/gpa-more")
+    public List<Student> getStudentsByGpaMore(@RequestParam double gpa){
+        return studentCustomRepository.getStudentsGpaMore(gpa);
+    }
 
+    @GetMapping(value = "/filter")
+    public List<Student> getStudentsByGpaAndCity(@RequestParam(required = false) Double gpa,
+                                                 @RequestParam(required = false) String cityName){
+        return studentCustomRepository.getStudentByGpaOrCity(gpa, cityName);
+    }
+
+
+    @GetMapping(value = "/sorted")
+    public List<Student> sorted(){
+        return studentCustomRepository.getSortedById();
+    }
 
 
 }
